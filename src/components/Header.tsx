@@ -10,20 +10,20 @@ const Header = () => {
           </NavLink>
         </h1>
         <nav>
-          <ul className="flex space-x-7 text-lg">
-            {["/", "/auth", "/settings"].map((path, index) => (
-              <li key={index}>
-                <NavLink
-                  to={path}
-                  className={({ isActive }) =>
-                    `rounded p-2 transition ${
-                      isActive ? "bg-yellow-300 text-white" : "bg-white text-blue-950"
-                    } hover:bg-yellow-300 hover:text-white`
-                  }
-                >
+        <ul className="flex space-x-7 text-lg">
+        {["/", "/auth", "/settings"].map((path, index)=>(
+                <li key={index}>
+                    <NavLink
+                        to={path}
+                        className={({isActive})=>
+                        `rounded p-2 transition ${
+                            isActive ? "bg-yellow-300 text-white" : "bg-white text-blue-900"
+                        }`
+                        }
+                    >
                   {path === "/" ? "Home" : path.replace("/", "").charAt(0).toUpperCase() + path.slice(2)}
-                </NavLink>
-              </li>
+                  </NavLink>
+                </li>
             ))}
           </ul>
         </nav>
