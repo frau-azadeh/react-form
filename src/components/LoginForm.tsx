@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Button  from "./Button";
+import Button from "./Button";
 import Input from "./Input";
 import { loginUser } from "../api/auth";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,10 @@ interface LoginFormInputs {
 
 const schema = yup.object({
   email: yup.string().email("Invalid email").required("Email is required"),
-  password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
 });
 
 interface Props {
@@ -49,15 +52,32 @@ const LoginForm: React.FC<Props> = ({ switchToRegister }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 w-80">
-      <Input label="Email" {...register("email")} error={errors.email?.message} placeholder="Enter your email" />
-      <Input label="Password" {...register("password")} error={errors.password?.message} type="password" placeholder="Enter your password" />
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-3 w-80"
+    >
+      <Input
+        label="Email"
+        {...register("email")}
+        error={errors.email?.message}
+        placeholder="Enter your email"
+      />
+      <Input
+        label="Password"
+        {...register("password")}
+        error={errors.password?.message}
+        type="password"
+        placeholder="Enter your password"
+      />
       <Button type="submit" isLoading={loading}>
         Login
       </Button>
       <p className="mt-3 text-sm">
         Don't have an account?{" "}
-        <span className="text-blue-500 cursor-pointer" onClick={switchToRegister}>
+        <span
+          className="text-blue-500 cursor-pointer"
+          onClick={switchToRegister}
+        >
           Register here
         </span>
       </p>

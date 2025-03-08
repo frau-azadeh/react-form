@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Button  from "./Button";
+import Button from "./Button";
 import Input from "./Input";
 import { registerUser } from "../api/auth";
 import { showError, showSuccess } from "../utils/toast";
@@ -14,9 +14,15 @@ interface RegisterFormInputs {
 }
 
 const schema = yup.object({
-  fullName: yup.string().min(3, "Full name must be at least 3 characters").required("Full name is required"),
+  fullName: yup
+    .string()
+    .min(3, "Full name must be at least 3 characters")
+    .required("Full name is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
-  password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
 });
 
 interface Props {
@@ -48,10 +54,29 @@ const RegisterForm: React.FC<Props> = ({ switchToLogin }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 w-80">
-      <Input label="Full Name" {...register("fullName")} error={errors.fullName?.message} placeholder="Enter your full name" />
-      <Input label="Email" {...register("email")} error={errors.email?.message} placeholder="Enter your email" />
-      <Input label="Password" {...register("password")} error={errors.password?.message} type="password" placeholder="Enter your password" />
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-3 w-80"
+    >
+      <Input
+        label="Full Name"
+        {...register("fullName")}
+        error={errors.fullName?.message}
+        placeholder="Enter your full name"
+      />
+      <Input
+        label="Email"
+        {...register("email")}
+        error={errors.email?.message}
+        placeholder="Enter your email"
+      />
+      <Input
+        label="Password"
+        {...register("password")}
+        error={errors.password?.message}
+        type="password"
+        placeholder="Enter your password"
+      />
       <Button type="submit" isLoading={loading}>
         Register
       </Button>

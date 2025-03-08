@@ -16,13 +16,22 @@ interface AuthFormInputs {
 
 const loginSchema = yup.object({
   email: yup.string().email("Invalid email").required("Email is required"),
-  password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
 });
 
 const registerSchema = yup.object({
-  fullName: yup.string().min(3, "Full name must be at least 3 characters").required("Full name is required"),
+  fullName: yup
+    .string()
+    .min(3, "Full name must be at least 3 characters")
+    .required("Full name is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
-  password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
 });
 
 const Auth = () => {
@@ -66,20 +75,44 @@ const Auth = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h2 className="text-2xl font-bold mb-4">{isRegister ? "Register" : "Login"}</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 w-80">
+      <h2 className="text-2xl font-bold mb-4">
+        {isRegister ? "Register" : "Login"}
+      </h2>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-3 w-80"
+      >
         {isRegister && (
-          <Input label="Full Name" {...register("fullName")} error={errors.fullName?.message} placeholder="Enter your full name" />
+          <Input
+            label="Full Name"
+            {...register("fullName")}
+            error={errors.fullName?.message}
+            placeholder="Enter your full name"
+          />
         )}
-        <Input label="Email" {...register("email")} error={errors.email?.message} placeholder="Enter your email" />
-        <Input label="Password" {...register("password")} error={errors.password?.message} type="password" placeholder="Enter your password" />
+        <Input
+          label="Email"
+          {...register("email")}
+          error={errors.email?.message}
+          placeholder="Enter your email"
+        />
+        <Input
+          label="Password"
+          {...register("password")}
+          error={errors.password?.message}
+          type="password"
+          placeholder="Enter your password"
+        />
         <Button type="submit" isLoading={loading}>
           {isRegister ? "Register" : "Login"}
         </Button>
       </form>
       <p className="mt-3 text-sm">
         {isRegister ? "Already have an account?" : "Don't have an account?"}{" "}
-        <span className="text-blue-500 cursor-pointer" onClick={() => setIsRegister(!isRegister)}>
+        <span
+          className="text-blue-500 cursor-pointer"
+          onClick={() => setIsRegister(!isRegister)}
+        >
           {isRegister ? "Login here" : "Register here"}
         </span>
       </p>
