@@ -23,10 +23,7 @@ return(
           <Route path="*" element={<PageNotFound/>}/>
         </Routes>
         </Layout>
-    </Router>
-    
- 
-    
+    </Router>  
 )
 }
 
