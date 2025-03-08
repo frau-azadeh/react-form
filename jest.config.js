@@ -1,5 +1,5 @@
 export default {
-    testEnvironment: "jsdom",
+    testEnvironment: "jest-environment-jsdom",
     moduleNameMapper: {
       "\\.(css|less|scss|sass)$": "identity-obj-proxy"
     },
