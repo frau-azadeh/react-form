@@ -1,6 +1,4 @@
-import React from 'react'
-
-const PageNotFound: React.FC = () => {
+function PageNotFound () {
   return (
     <div>
         <h1>error is 404</h1>

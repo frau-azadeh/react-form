@@ -1,11 +1,9 @@
 import React from 'react'
 
-const Footer:React.FC = () => {
+const Footer = () => {
   return (
-    <footer className="w-full bg-blue-950 text-white text-center py-3 mt-auto">
-        <p >@my panel</p>
-    </footer>
-)
+    <div>Footer</div>
+  )
 }
 
 export default Footer

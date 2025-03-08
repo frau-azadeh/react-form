@@ -1,6 +1,4 @@
-import React from 'react'
-
-const Setting: React.FC= () => {
+function Setting () {
   return (
     <div>Setting page</div>
   )
