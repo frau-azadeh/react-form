@@ -9,7 +9,10 @@ const ThemeSwitcher: React.FC = () => {
   const bgColor = useSelector((state: RootState) => state.theme.color);
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center" style={{ backgroundColor: bgColor }}>
+    <div
+      className="h-screen flex flex-col items-center justify-center"
+      style={{ backgroundColor: bgColor }}
+    >
       <h1 className="text-2xl font-bold mb-4">رنگ پس‌زمینه: {bgColor}</h1>
       <button
         onClick={() => dispatch(changeColor())}

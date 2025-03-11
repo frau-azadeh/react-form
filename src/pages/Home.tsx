@@ -3,9 +3,9 @@ import Counter from "../components/Counter";
 function Home() {
   return (
     <div>
-      <Counter/>
+      <Counter />
     </div>
-  )
+  );
 }
 
 export default Home;
