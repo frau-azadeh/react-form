@@ -44,6 +44,17 @@ export const SimpleForm: React.FC = () => {
         </div>
 
         <div>
+          <label className="block font-medium mb-1">Family</label>
+          <input
+            {...register("family")}
+            className="w-full border px-4 py-2 rounded focus:outline-none focus:ring focus:ring-blue-300"
+          />
+          {errors.family && (
+            <p className="text-sm text-red-600">{errors.family.message}</p>
+          )}
+        </div>
+
+        <div>
           <label className="block font-medium mb-1">Email</label>
           <input
             {...register("email")}
