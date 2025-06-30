@@ -57,7 +57,9 @@ resume: z.custom<File>(
     (file)=>file instanceof File && file.type === "application/pdf",
     {message: "Only PDF are allowed"}
 ),
-
+acceptTerms: z.literal(true, {
+    errorMap: () => ({ message: "You must accept the terms" }),
+})
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;
