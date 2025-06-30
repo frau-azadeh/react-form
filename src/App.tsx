@@ -4,21 +4,22 @@ import Dashboard from "./pages/Dashboard";
 import Setting from "./pages/Setting";
 import Login from "./pages/Login";
 import Auth from "./pages/Auth";
+import Form from "./pages/Form";
 import PageNotFound from "./pages/PageNotFound";
 import Layout from "./components/Layout";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <Router>
-      <ToastContainer position="top-right" autoClose={3000} />
+       <Toaster position="top-center" />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="auth" element={<Auth />} />
+          <Route path="/form" element={<Form/>} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
         <Route path="login" element={<Login />} />
