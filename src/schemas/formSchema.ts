@@ -31,8 +31,15 @@ email: z
   .regex(
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     "Email format is invalid"
-  )
-
+  ),
+  phone:z
+  .string()
+  .trim()
+  .regex(/^09\d{9}$/,"Phone must be 11 digitis and start with 09"),
+  postalCode:z
+  .string()
+  .trim()
+  .regex(/^\d{10}$/, "Postal code must be a number")
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;
