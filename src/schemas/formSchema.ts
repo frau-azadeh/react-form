@@ -49,6 +49,10 @@ age: z
 .min(18, "Minimum age is 18")
 .max(65, "Maximum age is 65"),
 
+gender: z.enum(["male", "female", "other"],{
+    errorMap: ()=>({message: "Gender is required"})
+}),
+
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;
