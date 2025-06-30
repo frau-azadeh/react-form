@@ -1,9 +1,9 @@
 // src/components/AdvancedForm.tsx
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import toast from 'react-hot-toast';
-import { formSchema, FormSchemaType } from '../schemas/formSchema';
+import React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
+import { formSchema, FormSchemaType } from "../schemas/formSchema";
 
 export const SimpleForm: React.FC = () => {
   const {
@@ -17,8 +17,8 @@ export const SimpleForm: React.FC = () => {
   });
 
   const onSubmit = (data: FormSchemaType) => {
-    toast.success('Form submitted successfully!');
-    console.log('Form Data:', data);
+    toast.success("Form submitted successfully!");
+    console.log("Form Data:", data);
     reset();
   };
 
@@ -27,66 +27,83 @@ export const SimpleForm: React.FC = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-xl shadow space-y-6"
     >
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">User Registration Form</h2>
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+        User Registration Form
+      </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block font-medium mb-1">Name</label>
           <input
-            {...register('name')}
+            {...register("name")}
             className="w-full border px-4 py-2 rounded focus:outline-none focus:ring focus:ring-blue-300"
           />
-          {errors.name && <p className="text-sm text-red-600">{errors.name.message}</p>}
+          {errors.name && (
+            <p className="text-sm text-red-600">{errors.name.message}</p>
+          )}
         </div>
 
         <div>
           <label className="block font-medium mb-1">Email</label>
           <input
-            {...register('email')}
+            {...register("email")}
             type="email"
             className="w-full border px-4 py-2 rounded"
           />
-          {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
+          {errors.email && (
+            <p className="text-sm text-red-600">{errors.email.message}</p>
+          )}
         </div>
 
         <div>
           <label className="block font-medium mb-1">Phone</label>
           <input
-            {...register('phone')}
+            {...register("phone")}
             className="w-full border px-4 py-2 rounded"
             placeholder="e.g. 09123456789"
           />
-          {errors.phone && <p className="text-sm text-red-600">{errors.phone.message}</p>}
+          {errors.phone && (
+            <p className="text-sm text-red-600">{errors.phone.message}</p>
+          )}
         </div>
 
         <div>
           <label className="block font-medium mb-1">Postal Code</label>
           <input
-            {...register('postalCode')}
+            {...register("postalCode")}
             className="w-full border px-4 py-2 rounded"
           />
-          {errors.postalCode && <p className="text-sm text-red-600">{errors.postalCode.message}</p>}
+          {errors.postalCode && (
+            <p className="text-sm text-red-600">{errors.postalCode.message}</p>
+          )}
         </div>
 
         <div>
           <label className="block font-medium mb-1">Age</label>
           <input
-            {...register('age', { valueAsNumber: true })}
+            {...register("age", { valueAsNumber: true })}
             type="number"
             className="w-full border px-4 py-2 rounded"
           />
-          {errors.age && <p className="text-sm text-red-600">{errors.age.message}</p>}
+          {errors.age && (
+            <p className="text-sm text-red-600">{errors.age.message}</p>
+          )}
         </div>
 
         <div>
           <label className="block font-medium mb-1">Gender</label>
-          <select {...register('gender')} className="w-full border px-4 py-2 rounded">
+          <select
+            {...register("gender")}
+            className="w-full border px-4 py-2 rounded"
+          >
             <option value="">Select gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
           </select>
-          {errors.gender && <p className="text-sm text-red-600">{errors.gender.message}</p>}
+          {errors.gender && (
+            <p className="text-sm text-red-600">{errors.gender.message}</p>
+          )}
         </div>
 
         <div className="md:col-span-2">
@@ -94,18 +111,22 @@ export const SimpleForm: React.FC = () => {
           <input
             type="file"
             accept="application/pdf"
-            onChange={(e) => setValue('resume', e.target.files?.[0] as File)}
+            onChange={(e) => setValue("resume", e.target.files?.[0] as File)}
             className="w-full"
           />
-          {errors.resume && <p className="text-sm text-red-600">{errors.resume.message}</p>}
+          {errors.resume && (
+            <p className="text-sm text-red-600">{errors.resume.message}</p>
+          )}
         </div>
       </div>
 
       <div className="flex items-center space-x-2">
-        <input type="checkbox" {...register('acceptTerms')} />
+        <input type="checkbox" {...register("acceptTerms")} />
         <label>I accept the terms and conditions</label>
       </div>
-      {errors.acceptTerms && <p className="text-sm text-red-600">{errors.acceptTerms.message}</p>}
+      {errors.acceptTerms && (
+        <p className="text-sm text-red-600">{errors.acceptTerms.message}</p>
+      )}
 
       <button
         type="submit"

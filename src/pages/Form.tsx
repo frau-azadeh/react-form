@@ -1,12 +1,12 @@
-import React from 'react'
-import { SimpleForm } from '../components/SimpleForm'
+import React from "react";
+import { SimpleForm } from "../components/SimpleForm";
 
-const Form:React.FC = () => {
+const Form: React.FC = () => {
   return (
     <div>
-        <SimpleForm/>
+      <SimpleForm />
     </div>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;

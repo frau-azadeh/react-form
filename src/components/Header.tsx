@@ -14,7 +14,7 @@ const Header = () => {
         </h1>
         <nav>
           <ul className="flex space-x-6 text-lg">
-            {["/", "/auth", "/setting","/form"].map((path, index) => (
+            {["/", "/auth", "/setting", "/form"].map((path, index) => (
               <li key={index}>
                 <NavLink
                   to={path}
