@@ -53,6 +53,11 @@ gender: z.enum(["male", "female", "other"],{
     errorMap: ()=>({message: "Gender is required"})
 }),
 
+resume: z.custom<File>(
+    (file)=>file instanceof File && file.type === "application/pdf",
+    {message: "Only PDF are allowed"}
+),
+
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;
