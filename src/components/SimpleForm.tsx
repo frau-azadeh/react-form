@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { formSchema, FormSchemaType } from "../schemas/formSchema";
 
-export const SimpleForm: React.FC = () => {
+const SimpleForm: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -15,136 +15,120 @@ export const SimpleForm: React.FC = () => {
   } = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
   });
-
-  const onSubmit = (data: FormSchemaType) => {
+  const onSubmit = (data: FormSchemaType)=>{
     toast.success("Form submitted successfully!");
-    console.log("Form Data:", data);
+    console.log("Form Data: ", data)
     reset();
-  };
-
+  }
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-xl shadow space-y-6"
-    >
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
-        User Registration Form
-      </h2>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label className="block font-medium mb-1">Name</label>
-          <input
-            {...register("name")}
-            className="w-full border px-4 py-2 rounded focus:outline-none focus:ring focus:ring-blue-300"
-          />
-          {errors.name && (
-            <p className="text-sm text-red-600">{errors.name.message}</p>
-          )}
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">Family</label>
-          <input
-            {...register("family")}
-            className="w-full border px-4 py-2 rounded focus:outline-none focus:ring focus:ring-blue-300"
-          />
-          {errors.family && (
-            <p className="text-sm text-red-600">{errors.family.message}</p>
-          )}
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">Email</label>
-          <input
-            {...register("email")}
-            type="email"
-            className="w-full border px-4 py-2 rounded"
-          />
-          {errors.email && (
-            <p className="text-sm text-red-600">{errors.email.message}</p>
-          )}
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">Phone</label>
-          <input
-            {...register("phone")}
-            className="w-full border px-4 py-2 rounded"
-            placeholder="e.g. 09123456789"
-          />
-          {errors.phone && (
-            <p className="text-sm text-red-600">{errors.phone.message}</p>
-          )}
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">Postal Code</label>
-          <input
-            {...register("postalCode")}
-            className="w-full border px-4 py-2 rounded"
-          />
-          {errors.postalCode && (
-            <p className="text-sm text-red-600">{errors.postalCode.message}</p>
-          )}
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">Age</label>
-          <input
-            {...register("age", { valueAsNumber: true })}
-            type="number"
-            className="w-full border px-4 py-2 rounded"
-          />
-          {errors.age && (
-            <p className="text-sm text-red-600">{errors.age.message}</p>
-          )}
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">Gender</label>
-          <select
-            {...register("gender")}
-            className="w-full border px-4 py-2 rounded"
-          >
-            <option value="">Select gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-          {errors.gender && (
-            <p className="text-sm text-red-600">{errors.gender.message}</p>
-          )}
-        </div>
-
-        <div className="md:col-span-2">
-          <label className="block font-medium mb-1">Resume (PDF Only)</label>
-          <input
-            type="file"
-            accept="application/pdf"
-            onChange={(e) => setValue("resume", e.target.files?.[0] as File)}
-            className="w-full"
-          />
-          {errors.resume && (
-            <p className="text-sm text-red-600">{errors.resume.message}</p>
-          )}
-        </div>
-      </div>
-
-      <div className="flex items-center space-x-2">
-        <input type="checkbox" {...register("acceptTerms")} />
-        <label>I accept the terms and conditions</label>
-      </div>
-      {errors.acceptTerms && (
-        <p className="text-sm text-red-600">{errors.acceptTerms.message}</p>
+<form onSubmit={handleSubmit(onSubmit)}>
+  <h2>User Registration Form: </h2>
+  <div>
+    <div>
+      <label>Name</label>
+      <input
+        {...register("name")}
+      />
+      {errors.name &&(
+        <p>{errors.name.message}</p>
       )}
+    </div>
 
-      <button
-        type="submit"
-        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+    <div>
+      <label>Family</label>
+      <input
+        {...register("family")}
+      />
+      {errors.family &&(
+        <p>{errors.family.message}</p>
+      )}
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input
+        {...register("email")}
+        type='email'
+      />
+      {errors.email && (
+        <p>{errors.email.message}</p>
+      )}
+    </div>
+
+    <div>
+      <label>Phone</label>
+      <input
+        {...register("phone")}
+        placeholder='e.g 09123456789'
+      />
+      {errors.phone &&(
+        <p>{errors.phone.message}</p>
+      )}
+    </div>
+
+    <div>
+      <label>Postal Code</label>
+      <input
+        {...register("postalCode")}
+      />
+      {errors.postalCode &&(
+        <p>{errors.postalCode.message}</p>
+      )}
+    </div>
+
+    <div>
+      <label>Age</label>
+      <input
+        {...register("age", { valueAsNumber: true})}
+        type='number'
+      />
+      {errors.age &&(
+        <p>{errors.age.message}</p>
+      )}
+    </div>
+
+    <div>
+      <label>Gender</label>
+      <select 
+        {...register("gender")}
       >
-        Submit
-      </button>
-    </form>
-  );
-};
+        <option value="">Select gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      {errors.gender &&(
+        <p>{errors.gender.message}</p>
+      )}
+    </div>
+    <div>
+      <label>Resume (PDF Only)</label>
+      <input
+        type='file'
+        accept='application/pdf'
+        onChange={(e)=>setValue("resume", e.target.files?.[0] as File)}
+      />
+      {errors.resume &&(
+        <p>{errors.resume.message}</p>
+      )}
+    </div>
+  </div>
+
+  <div>
+    <input type='checkbox' {...register("acceptTerms")}/>
+    <label>I accept the terms and conditions</label>
+  </div>
+  {errors.acceptTerms &&(
+    <p>{errors.acceptTerms.message}</p>
+  )}
+
+  <button
+    type='submit'
+  >
+    Submit
+  </button>
+</form>
+  )
+}
+
+export default SimpleForm
