@@ -21,61 +21,87 @@ const SimpleForm: React.FC = () => {
     reset();
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}
+    <form
+      onSubmit={handleSubmit(onSubmit)}
       className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-xl shadow space-y-6"
     >
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">User Registration Form: </h2>
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+        User Registration Form:{" "}
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block font-medium mb-1">Name</label>
-          <input {...register("name")} 
+          <input
+            {...register("name")}
             className="w-full border px-4 py-2 rounded focus:outline-none focus:ring focus:ring-blue-300"
           />
-          {errors.name && <p className="text-sm text-red-600">{errors.name.message}</p>}
+          {errors.name && (
+            <p className="text-sm text-red-600">{errors.name.message}</p>
+          )}
         </div>
 
         <div>
           <label className="block font-medium mb-1">Family</label>
-          <input {...register("family")} 
-          className="w-full border rounded px-4 py-2 focus:outline-none focus:ring focus:ring-blue-300"/>
-          {errors.family && <p className="text-sm text-red-600">{errors.family.message}</p>}
+          <input
+            {...register("family")}
+            className="w-full border rounded px-4 py-2 focus:outline-none focus:ring focus:ring-blue-300"
+          />
+          {errors.family && (
+            <p className="text-sm text-red-600">{errors.family.message}</p>
+          )}
         </div>
 
         <div>
           <label className="block font-medium mb-1">Email</label>
-          <input {...register("email")} type="email" 
+          <input
+            {...register("email")}
+            type="email"
             className="w-full border px-4 py-2 rounded"
           />
-          {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
+          {errors.email && (
+            <p className="text-sm text-red-600">{errors.email.message}</p>
+          )}
         </div>
 
         <div>
           <label className="block font-medium mb-1">Phone</label>
-          <input {...register("phone")} placeholder="e.g 09123456789" 
+          <input
+            {...register("phone")}
+            placeholder="e.g 09123456789"
             className="w-full border px-4 py-2 rounded"
           />
-          {errors.phone && <p className="text-sm text-red-600">{errors.phone.message}</p>}
+          {errors.phone && (
+            <p className="text-sm text-red-600">{errors.phone.message}</p>
+          )}
         </div>
 
         <div>
           <label className="block font-medium mb-1">Postal Code</label>
-          <input {...register("postalCode")} 
+          <input
+            {...register("postalCode")}
             className="w-full border px-4 py-2 rounded"
           />
-          {errors.postalCode && <p className="text-sm text-red-600">{errors.postalCode.message}</p>}
+          {errors.postalCode && (
+            <p className="text-sm text-red-600">{errors.postalCode.message}</p>
+          )}
         </div>
 
         <div>
           <label className="block font-medium mb-1">Age</label>
-          <input {...register("age", { valueAsNumber: true })} type="number" 
+          <input
+            {...register("age", { valueAsNumber: true })}
+            type="number"
             className="w-full border px-4 py-2 rounded"
           />
-          {errors.age && <p className="text-sm text-red-600">{errors.age.message}</p>}
+          {errors.age && (
+            <p className="text-sm text-red-600">{errors.age.message}</p>
+          )}
         </div>
 
         <div>
           <label className="block font-medium mb-1">Gender</label>
-          <select {...register("gender")}
+          <select
+            {...register("gender")}
             className="w-full border px-4 py-2 rounded"
           >
             <option value="">Select gender</option>
@@ -83,17 +109,21 @@ const SimpleForm: React.FC = () => {
             <option value="female">Female</option>
             <option value="other">Other</option>
           </select>
-          {errors.gender && <p className="test-sm text-red-600">{errors.gender.message}</p>}
+          {errors.gender && (
+            <p className="test-sm text-red-600">{errors.gender.message}</p>
+          )}
         </div>
         <div className="col-span-2">
           <label className="block font-medium mb-1">Resume (PDF Only)</label>
           <input
-          className="w-full"
+            className="w-full"
             type="file"
             accept="application/pdf"
             onChange={(e) => setValue("resume", e.target.files?.[0] as File)}
           />
-          {errors.resume && <p className="text-sm text-red-600">{errors.resume.message}</p>}
+          {errors.resume && (
+            <p className="text-sm text-red-600">{errors.resume.message}</p>
+          )}
         </div>
       </div>
 
@@ -103,11 +133,12 @@ const SimpleForm: React.FC = () => {
       </div>
       {errors.acceptTerms && <p>{errors.acceptTerms.message}</p>}
 
-      <button type="submit"
+      <button
+        type="submit"
         className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-800 transition duration-300"
       >
         Submit
-        </button>
+      </button>
     </form>
   );
 };
