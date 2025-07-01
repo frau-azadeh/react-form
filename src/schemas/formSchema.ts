@@ -5,16 +5,17 @@ export const formSchema = z.object({
     .string()
     .trim()
     .min(2, "Name is too short")
-    .max(50, "Name is too long")
+    .max(25, "Name is too long")
     .regex(/^[a-zA-Z\s]+$/, "Only English letters are allowed")
-    //.regex(/^[\u0600-\u06FF\s]+$/, "فقط از حروف فارسی استفاده کنید")
+    //.regex(/^[\u0600-\u06FF\s]+$/, "فقط اط حروف فارسی استفاده شود")
     //.regex(/^[a-zA-Z\s\u0600-\u06FF]+$/, "Only letters are allowed")
     .transform((val) => val.replace(/\s+/g, " ")),
+
   family: z
     .string()
     .trim()
     .min(2, "Family is too short")
-    .max(25, "Family is too long")
+    .max(50, "Family is too long")
     .regex(/^[a-zA-Z\s]+$/, "Only English letters are allowed")
     .transform((val) =>
       val
@@ -26,7 +27,6 @@ export const formSchema = z.object({
         .join(" "),
     ),
   email: z
-
     .string()
     .trim()
     .toLowerCase()
@@ -37,22 +37,19 @@ export const formSchema = z.object({
   phone: z
     .string()
     .trim()
-    .regex(/^09\d{9}$/, "Phone must be 11 digitis and start with 09"),
-
+    .regex(/^09\d{9}$/, "Phone must be 11 digitis and start with 009"),
   postalCode: z
     .string()
     .trim()
     .regex(/^\d{10}$/, "Postal code must be a number"),
-
   age: z
     .number({ invalid_type_error: "Age must be a number" })
     .min(18, "Minimum age is 18")
     .max(65, "Maximum age is 65"),
-
   gender: z.enum(["male", "female", "other"], {
     errorMap: () => ({ message: "Gender is required" }),
   }),
-
+  //.default("other")
   resume: z.custom<File>(
     (file) => file instanceof File && file.type === "application/pdf",
     { message: "Only PDF are allowed" },
@@ -60,6 +57,7 @@ export const formSchema = z.object({
   acceptTerms: z.literal(true, {
     errorMap: () => ({ message: "You must accept the terms" }),
   }),
+  //z.boolean().refine(val => val === true, { message: "You must accept the terms",}),
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;
