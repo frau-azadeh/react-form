@@ -92,7 +92,7 @@ const AdvancedForm: React.FC = () => {
 
   const updateSkillRating = (name: string, rating: number): void => {
     setSkillsList((prev) =>
-      prev.map((skill) => (skill.name === name ? { ...skill, rating } : skill))
+      prev.map((skill) => (skill.name === name ? { ...skill, rating } : skill)),
     );
   };
 

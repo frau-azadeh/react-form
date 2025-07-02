@@ -21,9 +21,9 @@ export const formSchema = z.object({
         .replace(/\s+/g, " ")
         .split(" ")
         .map(
-          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
         )
-        .join(" ")
+        .join(" "),
     ),
   email: z
     .string()
@@ -31,29 +31,30 @@ export const formSchema = z.object({
     .toLowerCase()
     .regex(
       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      "Email format is invalid"
+      "Email format is invalid",
     ),
   phone: z
     .string()
     .trim()
     .regex(/^09\d{9}$/, "Phone must be 11 digits and start with 09"),
-  postalCode: z.string().trim().regex(/^\d{10}$/, "Postal code must be 10 digits"),
+  postalCode: z
+    .string()
+    .trim()
+    .regex(/^\d{10}$/, "Postal code must be 10 digits"),
   age: z.number({ invalid_type_error: "Age must be a number" }).min(18).max(65),
-   //.default("other")
+  //.default("other")
   gender: z.enum(["male", "female", "other"], {
     errorMap: () => ({ message: "Gender is required" }),
   }),
   resume: z
     .custom<File>(
       (file) => file instanceof File && file.type === "application/pdf",
-      { message: "Only PDF files are allowed" }
+      { message: "Only PDF files are allowed" },
     )
     .optional(),
-  acceptTerms: z
-    .boolean()
-    .refine((val) => val === true, {
-      message: "You must accept the terms",
-    }),
+  acceptTerms: z.boolean().refine((val) => val === true, {
+    message: "You must accept the terms",
+  }),
   bio: z.string().trim().max(300).optional(),
   skills: z.record(z.number().min(0).max(5)),
   jobStatus: z.enum(["employed", "student", "freelancer", "unemployed"]),
