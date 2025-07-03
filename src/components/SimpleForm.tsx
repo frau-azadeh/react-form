@@ -40,7 +40,7 @@ const StarRating: React.FC<{
   );
 };
 
-const AdvancedForm: React.FC = () => {
+const SimpleForm: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -380,4 +380,4 @@ const AdvancedForm: React.FC = () => {
   );
 };
 
-export default AdvancedForm;
+export default SimpleForm;
