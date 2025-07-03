@@ -7,23 +7,26 @@ export const formSchema = z.object({
     .min(2, "Name is too short")
     .max(25, "Name is too long")
     .regex(/^[a-zA-Z\s]+$/, "Only English letters are allowed")
-    //.regex(/^[\u0600-\u06FF\s]+$/, "فقط اط حروف فارسی استفاده شود")
-    //.regex(/^[a-zA-Z\s\u0600-\u06FF]+$/, "Only letters are allowed")
+    //.reges(/^[\u0600-\u06FF\s]+$, "فقط از حروف فارسی استفاده شود")
+    //.reges(/^[a-zA-Z\s\0u600-\u06FF]+$/,"Only letters are allowed")
     .transform((val) => val.replace(/\s+/g, " ")),
+
   family: z
     .string()
     .trim()
     .min(2, "Family is too short")
     .max(50, "Family is too long")
     .regex(/^[a-zA-Z\s]+$/, "Only English letters are allowed")
-    .transform((val) =>
-      val
-        .replace(/\s+/g, " ")
-        .split(" ")
-        .map(
-          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
-        )
-        .join(" "),
+    .transform(
+      (val) =>
+        val
+          .replace(/\s+/g, " ") // " john doe "
+          .split(" ") // ["john", "doe"] string to object
+          .map(
+            (word) =>
+              word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
+          )
+          .join(" "), // "John Doe"
     ),
   email: z
     .string()
@@ -40,9 +43,8 @@ export const formSchema = z.object({
   postalCode: z
     .string()
     .trim()
-    .regex(/^\d{10}$/, "Postal code must be 10 digits"),
+    .regex(/^\d{10}$/, "Postal code must be 10 "),
   age: z.number({ invalid_type_error: "Age must be a number" }).min(18).max(65),
-  //.default("other")
   gender: z.enum(["male", "female", "other"], {
     errorMap: () => ({ message: "Gender is required" }),
   }),
@@ -57,7 +59,9 @@ export const formSchema = z.object({
   }),
   bio: z.string().trim().max(300).optional(),
   skills: z.record(z.number().min(0).max(5)),
-  jobStatus: z.enum(["employed", "student", "freelancer", "unemployed"]),
+  jobStatus: z.enum(["empolyed", "student", "freelancer", "unemployed"], {
+    errorMap: () => ({ message: "jobStatus is required" }),
+  }),
   dob: z.date().optional(),
 });
 
