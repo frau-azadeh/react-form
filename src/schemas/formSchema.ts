@@ -37,7 +37,11 @@ export const formSchema = z.object({
   phone: z
     .string()
     .trim()
-    .regex(/^09\d{9}$/,"Phone must be 11 digits and start with 09")
+    .regex(/^09\d{9}$/,"Phone must be 11 digits and start with 09"),
+  postalCode: z
+    .string()
+    .trim()
+    .regex(/^\d{10}$/,"Postal code must be 10 "),
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;
