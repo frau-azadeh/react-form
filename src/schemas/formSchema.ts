@@ -19,12 +19,12 @@ export const formSchema = z.object({
     .regex(/^[a-zA-Z\s]+$/, "Only English letters are allowed")
     .transform((val) =>
       val
-        .replace(/\s+/g, " ")
-        .split(" ")
+        .replace(/\s+/g, " ")// " john doe "
+        .split(" ")// ["john", "doe"] string to object
         .map(
           (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
         )
-        .join(" "),
+        .join(" "),// "John Doe"
     ),
   email: z
     .string()
@@ -49,8 +49,13 @@ export const formSchema = z.object({
   gender: z
     .enum(["male", "female", "other"],{
       errorMap: ()=>({message: "Gender is required"}),
-    })
-  
+    }),
+  resume: z 
+    .custom<File>(
+      (file)=>file instanceof File && file.type === "application/pdf",
+      {message: "Only PDF files are allowed"}
+    )
+.optional(),
 
 });
 
