@@ -42,6 +42,16 @@ export const formSchema = z.object({
     .string()
     .trim()
     .regex(/^\d{10}$/,"Postal code must be 10 "),
+  age: z
+    .number({invalid_type_error:"Age must be a number"})
+    .min(18)
+    .max(65),
+  gender: z
+    .enum(["male", "female", "other"],{
+      errorMap: ()=>({message: "Gender is required"}),
+    })
+  
+
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;
