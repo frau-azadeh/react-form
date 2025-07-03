@@ -26,7 +26,14 @@ export const formSchema = z.object({
           (word)=> word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
         )
         .join(" "),
-    )
+    ),
+    email: z
+      .string()
+      .trim()
+      .toLowerCase()
+      .regex(     
+       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      "Email format is invalid",)
   })
 
 export type FormSchemaType = z.infer<typeof formSchema>
