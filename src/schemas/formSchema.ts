@@ -70,7 +70,9 @@ export const formSchema = z.object({
     .enum(["empolyed", "student", "freelancer","unemployed"],{
       errorMap: ()=>({message: "jobStatus is required"})
     }),
-
+  dob: z
+    .date()
+    .optional(),
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;
