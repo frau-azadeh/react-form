@@ -59,7 +59,7 @@ export const formSchema = z.object({
   }),
   bio: z.string().trim().max(300).optional(),
   skills: z.record(z.number().min(0).max(5)),
-  jobStatus: z.enum(["empolyed", "student", "freelancer", "unemployed"], {
+  jobStatus: z.enum(["employed", "student", "freelancer", "unemployed"], {
     errorMap: () => ({ message: "jobStatus is required" }),
   }),
   dob: z.date().optional(),
