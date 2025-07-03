@@ -127,6 +127,104 @@ const SimpleForm:React.FC = () => {
           <p>{errors.name.message}</p>
         )}
       </div>
+      <div>
+        <label>Family</label>
+        <input
+          {...register("family")}
+        />
+        {errors.family &&(
+          <p>{errors.family.message}</p>
+        )}
+      </div>
+      <div>
+        <label>Email</label>
+        <input
+          {...register("email")}
+          type="email"
+        />
+        {errors.email &&(
+          <p>{errors.email.message}</p>
+        )}
+      </div>
+      <div>
+        <label>Phone</label>
+        <input
+          {...register("phone")}
+          placeholder="e.g 09123456789"
+        />
+        {errors.phone && (
+          <p>{errors.phone.message}</p>
+        )}
+      </div>
+      <div>
+        <label>Postal Code</label>
+        <input
+          {...register("postalCode")}
+        />
+        {errors.postalCode && (
+          <p>{errors.postalCode.message}</p>
+        )}
+      </div>
+      <div>
+        <label>Age</label>
+        <input
+          {...register("age",{valueAsNumber: true})}
+        />
+        {errors.age &&(
+          <p>{errors.age.message}</p>
+        )}
+      </div>
+      <div>
+        <label>Gender</label>
+        <Controller
+          name="gender"
+          control={control}
+          render={({field})=>(
+            <select
+              {...field}
+            >
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          )}
+        />
+        {errors.gender && (
+          <p>{errors.gender.message}</p>
+        )}
+      </div>
+
+      <div>
+        <label>Resume</label>
+        <Controller
+          name="resume"
+          control={control}
+          render={({field})=>(
+            <input type="file"
+              accept="application/pdf"
+              onChange={(e)=>{
+                const file = e.target.files?.[0];
+                field.onChange(file);
+              }}
+            />
+          )}
+        />
+        {errors.resume &&(
+          <p>{errors.resume.message}</p>
+        )}
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          {...register("acceptTerms")}
+          id="acceptTerms"
+        />
+        <label htmlFor="acceptTerms">I accept the terms and conditions</label>
+      </div>
+      {errors.acceptTerms &&(
+        <p>{errors.acceptTerms.message}</p>
+      )}
     </div>
 
    </form>
