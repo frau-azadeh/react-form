@@ -58,7 +58,15 @@ export const formSchema = z.object({
     .boolean()
     .refine((val)=>val === true,{
       message: "You must accept the terms"
-    })
+    }),
+  bio: z
+    .string()
+    .trim()
+    .max(300)
+    .optional(),
+  skill: z
+    .record(z.number().min(0).max(5)),
+
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;
