@@ -54,25 +54,15 @@ export const formSchema = z.object({
       { message: "Only PDF files are allowed" },
     )
     .optional(),
-  acceptTerms: z
-    .boolean()
-    .refine((val)=>val === true,{
-      message: "You must accept the terms"
-    }),
-  bio: z
-    .string()
-    .trim()
-    .max(300)
-    .optional(),
-  skills: z
-    .record(z.number().min(0).max(5)),
-  jobStatus: z
-    .enum(["empolyed", "student", "freelancer","unemployed"],{
-      errorMap: ()=>({message: "jobStatus is required"})
-    }),
-  dob: z
-    .date()
-    .optional(),
+  acceptTerms: z.boolean().refine((val) => val === true, {
+    message: "You must accept the terms",
+  }),
+  bio: z.string().trim().max(300).optional(),
+  skills: z.record(z.number().min(0).max(5)),
+  jobStatus: z.enum(["empolyed", "student", "freelancer", "unemployed"], {
+    errorMap: () => ({ message: "jobStatus is required" }),
+  }),
+  dob: z.date().optional(),
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;
