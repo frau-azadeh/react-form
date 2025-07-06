@@ -7,9 +7,7 @@ export const OpenAccountSchema = z.object({
     .string()
     .length(10, "کد ملی باید ۱۰ رقم باشد.")
     .regex(/^\d+$/, "کد ملی باید فقط عدد باشد."),
-  phoneNumber: z
-    .string()
-    .regex(/^09\d{9}$/, "شماره تماس معتبر نیست."),
+  phoneNumber: z.string().regex(/^09\d{9}$/, "شماره تماس معتبر نیست."),
   accountType: z.enum(["short-term", "long-term", "current"]),
   initialDeposit: z
     .number({ invalid_type_error: "عدد وارد کنید" })
