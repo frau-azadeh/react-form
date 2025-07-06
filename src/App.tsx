@@ -8,6 +8,7 @@ import Form from "./pages/Form";
 import PageNotFound from "./pages/PageNotFound";
 import Layout from "./components/Layout";
 import { Toaster } from "react-hot-toast";
+import Account from "./pages/Account";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/setting" element={<Setting />} />
           <Route path="auth" element={<Auth />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/account" element={<Account/>}/>
           <Route path="*" element={<PageNotFound />} />
         </Route>
         <Route path="login" element={<Login />} />
