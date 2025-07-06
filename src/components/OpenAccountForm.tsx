@@ -1,3 +1,5 @@
+// components/OpenAccountForm.tsx
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -5,11 +7,15 @@ import {
   OpenAccountSchemaType,
 } from "../schemas/openAccountSchema";
 import { successToast, errorToast } from "../utils/toast";
+
 import Button from "./Button";
 import Input from "./Input";
 import Select from "./Select";
+import FormField from "./FormField";
+import TermsCheckbox from "./TermsCheckbox";
+import LivePreview from "./LivePreview";
 
-export const OpenAccountForm = () => {
+const OpenAccountForm: React.FC = () => {
   const {
     register,
     control,
@@ -33,68 +39,35 @@ export const OpenAccountForm = () => {
     try {
       console.log("📤 ارسال موفق:", data);
       successToast("فرم با موفقیت ثبت شد ✅");
-      reset(); // بعد از موفقیت فرم ریست میشه
-    } catch (err) {
+      reset();
+    } catch {
       errorToast("خطایی رخ داده است ❌");
     }
   };
 
-  // نمایش اطلاعات زنده برای آموزش
   const selectedAccountType = watch("accountType");
   const deposit = watch("initialDeposit");
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="rtl text-right max-w-3xl mx-auto bg-white p-8 shadow-xl rounded-2xl border border-gray-200 mt-20 pt-20"
-    >
+    <form onSubmit={handleSubmit(onSubmit)}>
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">
         📄 افتتاح حساب بانکی
       </h2>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        {/* نام */}
-        <div>
-          <label className="block mb-1 font-medium text-gray-700">
-            نام و نام خانوادگی
-          </label>
+        <FormField label="نام و نام خانوادگی" error={errors.fullName?.message}>
           <Input {...register("fullName")} aria-invalid={!!errors.fullName} />
-          {errors.fullName && (
-            <p className="text-sm text-red-600 mt-1">
-              {errors.fullName.message}
-            </p>
-          )}
-        </div>
+        </FormField>
 
-        {/* کد ملی */}
-        <div>
-          <label className="block mb-1 font-medium text-gray-700">کد ملی</label>
-          <Input {...register("nationalCode")} />
-          {errors.nationalCode && (
-            <p className="text-sm text-red-600 mt-1">
-              {errors.nationalCode.message}
-            </p>
-          )}
-        </div>
+        <FormField label="کد ملی" error={errors.nationalCode?.message}>
+          <Input {...register("nationalCode")} aria-invalid={!!errors.nationalCode} />
+        </FormField>
 
-        {/* شماره تماس */}
-        <div>
-          <label className="block mb-1 font-medium text-gray-700">
-            شماره تماس
-          </label>
-          <Input {...register("phoneNumber")} />
-          {errors.phoneNumber && (
-            <p className="text-sm text-red-600 mt-1">
-              {errors.phoneNumber.message}
-            </p>
-          )}
-        </div>
+        <FormField label="شماره تماس" error={errors.phoneNumber?.message}>
+          <Input {...register("phoneNumber")} aria-invalid={!!errors.phoneNumber} />
+        </FormField>
 
-        {/* نوع حساب */}
-        <div>
-          <label className="block mb-1 font-medium text-gray-700 border-gray-300 focus:ring-blue-500 focus:border-blue-500">
-            نوع حساب
-          </label>
+        <FormField label="نوع حساب" error={errors.accountType?.message}>
           <Controller
             name="accountType"
             control={control}
@@ -110,48 +83,22 @@ export const OpenAccountForm = () => {
               />
             )}
           />
-        </div>
+        </FormField>
 
-        {/* واریزی اولیه */}
-        <div className="md:col-start-1">
-          <label className="block mb-1 font-medium text-gray-700">
-            مبلغ واریزی اولیه
-          </label>
+        <FormField
+          label="مبلغ واریزی اولیه"
+          error={errors.initialDeposit?.message}
+          className="md:col-start-1"
+        >
           <Input
             type="number"
             {...register("initialDeposit", { valueAsNumber: true })}
+            aria-invalid={!!errors.initialDeposit}
           />
-          {errors.initialDeposit && (
-            <p className="text-sm text-red-600 mt-1">
-              {errors.initialDeposit.message}
-            </p>
-          )}
-        </div>
+        </FormField>
 
-        {/* پذیرش شرایط */}
-        <div className="md:col-span-2 flex items-center">
-          <Controller
-            name="termsAccepted"
-            control={control}
-            render={({ field: { onChange, onBlur, name, ref, value } }) => (
-              <Input
-                type="checkbox"
-                name={name}
-                onBlur={onBlur}
-                onChange={(e) => onChange(e.target.checked)}
-                checked={value}
-                ref={ref}
-              />
-            )}
-          />
-          <label className="ml-2 text-sm text-gray-700">
-            شرایط و قوانین را می‌پذیرم
-          </label>
-          {errors.termsAccepted && (
-            <p className="text-sm text-red-600 ml-4">
-              {errors.termsAccepted.message}
-            </p>
-          )}
+        <div className="md:col-span-2">
+          <TermsCheckbox control={control} error={errors.termsAccepted?.message} />
         </div>
       </div>
 
@@ -163,16 +110,9 @@ export const OpenAccountForm = () => {
         {isSubmitting ? "در حال ارسال..." : "ثبت فرم"}
       </Button>
 
-      {/* نمایش مقدار زنده */}
-      <div className="mt-6 bg-gray-50 p-4 rounded-lg text-sm text-gray-700 border">
-        <p>
-          <strong>نوع حساب انتخابی:</strong> {selectedAccountType}
-        </p>
-        <p>
-          <strong>مبلغ وارد شده:</strong> {deposit?.toLocaleString("fa-IR")}{" "}
-          تومان
-        </p>
-      </div>
+      <LivePreview accountType={selectedAccountType} initialDeposit={deposit} />
     </form>
   );
 };
+
+export default OpenAccountForm;
