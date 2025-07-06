@@ -108,7 +108,7 @@ export const OpenAccountForm = () => {
         </div>
 
         {/* Deposit */}
-        <div className="md:col-start-2">
+        <div className="md:col-start-1">
           <label className="block mb-1 font-medium text-gray-700">
             مبلغ واریزی اولیه
           </label>
@@ -125,7 +125,7 @@ export const OpenAccountForm = () => {
         </div>
 
         {/* Terms & Conditions (چون چک‌باکس و label کنار هم هستند، بهتره تک‌ستونه باشه) */}
-        <div className="md:col-span-2 flex items-center rtl flex-row-reverse">
+        <div className="md:col-span-2 flex items-center ">
           <Controller
             name="termsAccepted"
             control={control}
