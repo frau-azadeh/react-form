@@ -19,12 +19,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/setting" element={<Setting />} />
-          <Route path="/multiform" element={<MultiStepForm/>}/>
+          <Route path="/multiform" element={<MultiStepForm />} />
           <Route path="/form" element={<Form />} />
           <Route path="/account" element={<Account />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
-
       </Routes>
     </Router>
   );

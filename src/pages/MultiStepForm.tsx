@@ -33,7 +33,9 @@ export const MultiStepForm = () => {
   // ⛳ رفع خطای TS اینجاست
   const goNext = async () => {
     const currentSchema = stepSchemas[step];
-    const currentFields = Object.keys(currentSchema.shape) as (keyof FormData)[];
+    const currentFields = Object.keys(
+      currentSchema.shape,
+    ) as (keyof FormData)[];
 
     const valid = await methods.trigger(currentFields);
     if (valid) setStep((prev) => prev + 1);
@@ -54,7 +56,9 @@ export const MultiStepForm = () => {
         onSubmit={methods.handleSubmit(onSubmit)}
         className="max-w-2xl mx-auto p-6 space-y-6 bg-white shadow-md rounded-xl rtl text-right"
       >
-        <h2 className="text-2xl font-bold text-center">فرم افتتاح حساب بانکی - مرحله {step + 1}</h2>
+        <h2 className="text-2xl font-bold text-center">
+          فرم افتتاح حساب بانکی - مرحله {step + 1}
+        </h2>
 
         {step === 0 && <StepOne />}
         {step === 1 && <StepTwo />}
@@ -71,7 +75,11 @@ export const MultiStepForm = () => {
               ادامه
             </button>
           ) : (
-            <button type="submit" className="btn-primary" disabled={methods.formState.isSubmitting}>
+            <button
+              type="submit"
+              className="btn-primary"
+              disabled={methods.formState.isSubmitting}
+            >
               ثبت نهایی
             </button>
           )}

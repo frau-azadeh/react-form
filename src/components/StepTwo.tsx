@@ -23,13 +23,17 @@ export const StepTwo = () => {
           <option value="current">جاری</option>
         </select>
         {errors.accountType && (
-          <p className="mt-1 text-sm text-red-600">{errors.accountType.message as string}</p>
+          <p className="mt-1 text-sm text-red-600">
+            {errors.accountType.message as string}
+          </p>
         )}
       </div>
 
       {/* مبلغ واریزی اولیه */}
       <div className="flex flex-col">
-        <label className="mb-2 font-semibold text-gray-700">مبلغ واریزی اولیه</label>
+        <label className="mb-2 font-semibold text-gray-700">
+          مبلغ واریزی اولیه
+        </label>
         <input
           type="number"
           {...register("initialDeposit", { valueAsNumber: true })}
@@ -37,7 +41,9 @@ export const StepTwo = () => {
           placeholder="مثلاً 100000"
         />
         {errors.initialDeposit && (
-          <p className="mt-1 text-sm text-red-600">{errors.initialDeposit.message as string}</p>
+          <p className="mt-1 text-sm text-red-600">
+            {errors.initialDeposit.message as string}
+          </p>
         )}
       </div>
 
@@ -45,12 +51,15 @@ export const StepTwo = () => {
       <div className="md:col-span-2 mt-4 bg-gray-50 border border-gray-200 rounded-md p-4 text-gray-700">
         <p>
           <strong>نوع حساب انتخاب شده:</strong>{" "}
-          <span className="text-blue-600 capitalize">{accountType.replace("-", " ")}</span>
+          <span className="text-blue-600 capitalize">
+            {accountType.replace("-", " ")}
+          </span>
         </p>
         <p>
           <strong>مبلغ واریزی اولیه:</strong>{" "}
           <span className="text-green-600">
-            {initialDeposit ? initialDeposit.toLocaleString("fa-IR") : "0"} تومان
+            {initialDeposit ? initialDeposit.toLocaleString("fa-IR") : "0"}{" "}
+            تومان
           </span>
         </p>
       </div>
