@@ -1,9 +1,8 @@
-import Counter from "../components/Counter";
 
 function Home() {
   return (
     <div>
-      <Counter />
+      <h1>hi</h1>
     </div>
   );
 }
