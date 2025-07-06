@@ -22,7 +22,8 @@ export const MultiStepForm = () => {
     resolver: zodResolver(mergedSchema),
     mode: "onTouched",
     defaultValues: {
-      fullName: "",
+      name: "",
+      family:"",
       nationalCode: "",
       accountType: "short-term",
       initialDeposit: 0,
@@ -54,7 +55,6 @@ export const MultiStepForm = () => {
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className="max-w-2xl mx-auto p-6 space-y-6 bg-white shadow-md rounded-xl rtl text-right"
       >
         <h2 className="text-2xl font-bold text-center">
           فرم افتتاح حساب بانکی - مرحله {step + 1}
