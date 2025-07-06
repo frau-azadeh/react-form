@@ -9,11 +9,11 @@ const Header = () => {
             to="/"
             className="hover:text-yellow-300 transition text-white"
           >
-            My App
+            پنل شخصی
           </NavLink>
         </h1>
         <nav>
-          <ul className="flex space-x-6 text-lg">
+          <ul className="flex space-x-6 text-lg m-2">
             {["/", "/setting", "/form", "/افتتاح حساب", "/multiform"].map(
               (path, index) => (
                 <li key={index}>
