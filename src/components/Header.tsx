@@ -14,25 +14,27 @@ const Header = () => {
         </h1>
         <nav>
           <ul className="flex space-x-6 text-lg">
-            {["/", "/auth", "/setting", "/form"].map((path, index) => (
-              <li key={index}>
-                <NavLink
-                  to={path}
-                  className={({ isActive }) =>
-                    `rounded p-2 transition ${
-                      isActive
-                        ? "bg-yellow-300 text-white"
-                        : "bg-white text-blue-900"
-                    }`
-                  }
-                >
-                  {path === "/"
-                    ? "Home"
-                    : path.replace("/", "").charAt(0).toUpperCase() +
-                      path.slice(2)}
-                </NavLink>
-              </li>
-            ))}
+            {["/", "/auth", "/setting", "/form", "/account", "/multiform"].map(
+              (path, index) => (
+                <li key={index}>
+                  <NavLink
+                    to={path}
+                    className={({ isActive }) =>
+                      `rounded p-2 transition ${
+                        isActive
+                          ? "bg-yellow-300 text-white"
+                          : "bg-white text-blue-900"
+                      }`
+                    }
+                  >
+                    {path === "/"
+                      ? "Home"
+                      : path.replace("/", "").charAt(0).toUpperCase() +
+                        path.slice(2)}
+                  </NavLink>
+                </li>
+              ),
+            )}
           </ul>
         </nav>
       </div>

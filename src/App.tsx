@@ -2,12 +2,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Setting from "./pages/Setting";
-import Login from "./pages/Login";
-import Auth from "./pages/Auth";
+
 import Form from "./pages/Form";
 import PageNotFound from "./pages/PageNotFound";
 import Layout from "./components/Layout";
 import { Toaster } from "react-hot-toast";
+import Account from "./pages/Account";
+import { MultiStepForm } from "./pages/MultiStepForm";
 
 function App() {
   return (
@@ -18,11 +19,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/setting" element={<Setting />} />
-          <Route path="auth" element={<Auth />} />
+          <Route path="/multiform" element={<MultiStepForm />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/account" element={<Account />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
-        <Route path="login" element={<Login />} />
       </Routes>
     </Router>
   );
