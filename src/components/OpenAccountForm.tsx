@@ -4,7 +4,10 @@ import {
   OpenAccountSchema,
   OpenAccountSchemaType,
 } from "../schemas/openAccountSchema";
-import toast from "react-hot-toast";
+import { successToast, errorToast } from "../utils/toast";
+import Button from "./Button";
+import Input from "./Input";
+import Select from "./Select";
 
 export const OpenAccountForm = () => {
   const {
@@ -26,12 +29,17 @@ export const OpenAccountForm = () => {
     },
   });
 
-  const onSubmit = (data: OpenAccountSchemaType) => {
-    console.log("📤 ارسال موفق:", data);
-    toast.success("فرم با موفقیت ثبت شد ✅");
-    reset();
+  const onSubmit = async (data: OpenAccountSchemaType) => {
+    try {
+      console.log("📤 ارسال موفق:", data);
+      successToast("فرم با موفقیت ثبت شد ✅");
+      reset(); // بعد از موفقیت فرم ریست میشه
+    } catch (err) {
+      errorToast("خطایی رخ داده است ❌");
+    }
   };
 
+  // نمایش اطلاعات زنده برای آموزش
   const selectedAccountType = watch("accountType");
   const deposit = watch("initialDeposit");
 
@@ -44,17 +52,13 @@ export const OpenAccountForm = () => {
         📄 افتتاح حساب بانکی
       </h2>
 
-      {/* کانتینر گرید */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        {/* Full Name */}
+        {/* نام */}
         <div>
           <label className="block mb-1 font-medium text-gray-700">
             نام و نام خانوادگی
           </label>
-          <input
-            {...register("fullName")}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+          <Input {...register("fullName")} aria-invalid={!!errors.fullName} />
           {errors.fullName && (
             <p className="text-sm text-red-600 mt-1">
               {errors.fullName.message}
@@ -62,13 +66,10 @@ export const OpenAccountForm = () => {
           )}
         </div>
 
-        {/* National Code */}
+        {/* کد ملی */}
         <div>
           <label className="block mb-1 font-medium text-gray-700">کد ملی</label>
-          <input
-            {...register("nationalCode")}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+          <Input {...register("nationalCode")} />
           {errors.nationalCode && (
             <p className="text-sm text-red-600 mt-1">
               {errors.nationalCode.message}
@@ -76,15 +77,12 @@ export const OpenAccountForm = () => {
           )}
         </div>
 
-        {/* Phone */}
+        {/* شماره تماس */}
         <div>
           <label className="block mb-1 font-medium text-gray-700">
             شماره تماس
           </label>
-          <input
-            {...register("phoneNumber")}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+          <Input {...register("phoneNumber")} />
           {errors.phoneNumber && (
             <p className="text-sm text-red-600 mt-1">
               {errors.phoneNumber.message}
@@ -92,30 +90,36 @@ export const OpenAccountForm = () => {
           )}
         </div>
 
-        {/* Account Type */}
+        {/* نوع حساب */}
         <div>
-          <label className="block mb-1 font-medium text-gray-700">
+          <label className="block mb-1 font-medium text-gray-700 border-gray-300 focus:ring-blue-500 focus:border-blue-500">
             نوع حساب
           </label>
-          <select
-            {...register("accountType")}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 rtl text-right"
-          >
-            <option value="short-term">کوتاه‌مدت</option>
-            <option value="long-term">بلندمدت</option>
-            <option value="current">جاری</option>
-          </select>
+          <Controller
+            name="accountType"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                options={[
+                  { label: "کوتاه‌مدت", value: "short-term" },
+                  { label: "بلندمدت", value: "long-term" },
+                  { label: "جاری", value: "current" },
+                ]}
+                error={errors.accountType}
+              />
+            )}
+          />
         </div>
 
-        {/* Deposit */}
+        {/* واریزی اولیه */}
         <div className="md:col-start-1">
           <label className="block mb-1 font-medium text-gray-700">
             مبلغ واریزی اولیه
           </label>
-          <input
+          <Input
             type="number"
             {...register("initialDeposit", { valueAsNumber: true })}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-right "
           />
           {errors.initialDeposit && (
             <p className="text-sm text-red-600 mt-1">
@@ -124,39 +128,42 @@ export const OpenAccountForm = () => {
           )}
         </div>
 
-        {/* Terms & Conditions (چون چک‌باکس و label کنار هم هستند، بهتره تک‌ستونه باشه) */}
-        <div className="md:col-span-2 flex items-center ">
+        {/* پذیرش شرایط */}
+        <div className="md:col-span-2 flex items-center">
           <Controller
             name="termsAccepted"
             control={control}
             render={({ field: { onChange, onBlur, name, ref, value } }) => (
-              <input
+              <Input
                 type="checkbox"
                 name={name}
                 onBlur={onBlur}
                 onChange={(e) => onChange(e.target.checked)}
                 checked={value}
                 ref={ref}
-                className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
               />
             )}
           />
           <label className="ml-2 text-sm text-gray-700">
             شرایط و قوانین را می‌پذیرم
           </label>
+          {errors.termsAccepted && (
+            <p className="text-sm text-red-600 ml-4">
+              {errors.termsAccepted.message}
+            </p>
+          )}
         </div>
       </div>
 
-      {/* Submit */}
-      <button
+      <Button
         type="submit"
         disabled={isSubmitting}
         className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition mt-6"
       >
         {isSubmitting ? "در حال ارسال..." : "ثبت فرم"}
-      </button>
+      </Button>
 
-      {/* Live Watch Data */}
+      {/* نمایش مقدار زنده */}
       <div className="mt-6 bg-gray-50 p-4 rounded-lg text-sm text-gray-700 border">
         <p>
           <strong>نوع حساب انتخابی:</strong> {selectedAccountType}
