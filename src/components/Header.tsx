@@ -14,7 +14,7 @@ const Header = () => {
         </h1>
         <nav>
           <ul className="flex space-x-6 text-lg">
-            {["/", "/setting", "/form", "/account", "/multiform"].map(
+            {["/", "/setting", "/form", "/افتتاح حساب", "/multiform"].map(
               (path, index) => (
                 <li key={index}>
                   <NavLink

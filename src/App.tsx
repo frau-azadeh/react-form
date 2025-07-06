@@ -21,7 +21,7 @@ function App() {
           <Route path="/setting" element={<Setting />} />
           <Route path="/multiform" element={<MultiStepForm />} />
           <Route path="/form" element={<Form />} />
-          <Route path="/account" element={<Account />} />
+          <Route path="/افتتاح حساب" element={<Account />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
