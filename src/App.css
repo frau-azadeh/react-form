@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body {
+  direction: rtl;
+  font-family: Vazir;
+}
+
+.toast-rtl .Toastify__toast-body {
+  font-family: "Vazir", sans-serif !important;
+  text-align: right;
+  direction: rtl;
 }
