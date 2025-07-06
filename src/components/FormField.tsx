@@ -8,7 +8,12 @@ type FormFieldProps = {
   className?: string;
 };
 
-const FormField: React.FC<FormFieldProps> = ({ label, error, children, className }) => (
+const FormField: React.FC<FormFieldProps> = ({
+  label,
+  error,
+  children,
+  className,
+}) => (
   <div className={className}>
     <label className="block mb-1 font-medium text-gray-700">{label}</label>
     {children}

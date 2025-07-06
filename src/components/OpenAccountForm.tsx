@@ -60,11 +60,17 @@ const OpenAccountForm: React.FC = () => {
         </FormField>
 
         <FormField label="کد ملی" error={errors.nationalCode?.message}>
-          <Input {...register("nationalCode")} aria-invalid={!!errors.nationalCode} />
+          <Input
+            {...register("nationalCode")}
+            aria-invalid={!!errors.nationalCode}
+          />
         </FormField>
 
         <FormField label="شماره تماس" error={errors.phoneNumber?.message}>
-          <Input {...register("phoneNumber")} aria-invalid={!!errors.phoneNumber} />
+          <Input
+            {...register("phoneNumber")}
+            aria-invalid={!!errors.phoneNumber}
+          />
         </FormField>
 
         <FormField label="نوع حساب" error={errors.accountType?.message}>
@@ -98,7 +104,10 @@ const OpenAccountForm: React.FC = () => {
         </FormField>
 
         <div className="md:col-span-2">
-          <TermsCheckbox control={control} error={errors.termsAccepted?.message} />
+          <TermsCheckbox
+            control={control}
+            error={errors.termsAccepted?.message}
+          />
         </div>
       </div>
 
