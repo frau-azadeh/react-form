@@ -23,7 +23,7 @@ export const MultiStepForm = () => {
     mode: "onTouched",
     defaultValues: {
       name: "",
-      family:"",
+      family: "",
       nationalCode: "",
       accountType: "short-term",
       initialDeposit: 0,
@@ -53,9 +53,7 @@ export const MultiStepForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={methods.handleSubmit(onSubmit)}
-      >
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
         <h2 className="text-2xl font-bold text-center">
           فرم افتتاح حساب بانکی - مرحله {step + 1}
         </h2>

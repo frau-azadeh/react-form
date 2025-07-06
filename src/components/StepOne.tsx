@@ -30,9 +30,7 @@ export const StepOne = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* نام و نام خانوادگی */}
       <div className="flex flex-col">
-        <label className="mb-2 font-semibold text-gray-700">
-          نام 
-        </label>
+        <label className="mb-2 font-semibold text-gray-700">نام</label>
         <input
           {...register("name")}
           className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -45,9 +43,7 @@ export const StepOne = () => {
         )}
       </div>
       <div className="flex flex-col">
-        <label className="mb-2 font-semibold text-gray-700">
-          نام خانوادگی
-        </label>
+        <label className="mb-2 font-semibold text-gray-700">نام خانوادگی</label>
         <input
           {...register("family")}
           className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -107,11 +103,7 @@ export const StepOne = () => {
 
       {/* دکمه‌ها در زیر فرم، تمام عرض در موبایل، کنار هم در دسکتاپ */}
       <div className="md:col-span-2 flex flex-col md:flex-row justify-between gap-4 mt-6">
-        <Button
-          type="button"
-          onClick={() => reset()}
-          variant="secondary"
->
+        <Button type="button" onClick={() => reset()} variant="secondary">
           ریست فرم
         </Button>
         <Button
