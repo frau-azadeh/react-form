@@ -1,4 +1,4 @@
-import { OpenAccountForm } from "../components/OpenAccountForm";
+import  OpenAccountForm  from "../components/OpenAccountForm";
 
 function Account() {
   return (
