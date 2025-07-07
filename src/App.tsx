@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/setting" element={<Setting />} />
-          <Route path="/multiform" element={<MultiStepForm />} />
+          <Route path="/افتتاح دسته چک" element={<MultiStepForm />} />
           <Route path="/form" element={<Form />} />
           <Route path="/افتتاح حساب" element={<Account />} />
           <Route path="*" element={<PageNotFound />} />
