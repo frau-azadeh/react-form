@@ -1,62 +1,59 @@
+import React from "react";
 import { useFormContext, useWatch } from "react-hook-form";
+import Select from "./Select";
+import Input from "./Input";
 
-export const StepTwo = () => {
+const StepTwo: React.FC = () => {
   const {
     register,
     formState: { errors },
   } = useFormContext();
 
-  const accountType = useWatch({ name: "accountType" });
-  const initialDeposit = useWatch({ name: "initialDeposit" });
+  const accountType = useWatch({ name: "accountType", defaultValue: "" });
+  const initialDeposit = useWatch({ name: "initialDeposit", defaultValue: 0 });
+
+  const accountTypeOptions = [
+    { label: "کوتاه مدت", value: "کوتاه مدت" },
+    { label: "بلند مدت", value: "بلند مدت" },
+    { label: "جاری", value: "جاری" },
+  ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {/* انتخاب نوع حساب */}
+    <div className="grid md:grid-cols-2 gap-10 grid-cols-1">
       <div className="flex flex-col">
-        <label className="mb-2 font-semibold text-gray-700">نوع حساب</label>
-        <select
-          {...register("accountType")}
-          className="border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="short-term">کوتاه‌مدت</option>
-          <option value="long-term">بلندمدت</option>
-          <option value="current">جاری</option>
-        </select>
+        <label className="mb-3 text-gray-600">نوع حساب</label>
+        <Select
+          options={accountTypeOptions}
+          {...register("accountType", {
+            required: "لطفاً نوع حساب را انتخاب کنید",
+          })}
+        />
         {errors.accountType && (
-          <p className="mt-1 text-sm text-red-600">
+          <p className="mt-1 text-sm text-red-700">
             {errors.accountType.message as string}
           </p>
         )}
       </div>
-
-      {/* مبلغ واریزی اولیه */}
       <div className="flex flex-col">
-        <label className="mb-2 font-semibold text-gray-700">
-          مبلغ واریزی اولیه
-        </label>
-        <input
+        <label className="mb-3 text-gray-600">مبلغ واریزی اولیه</label>
+        <Input
           type="number"
           {...register("initialDeposit", { valueAsNumber: true })}
-          className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="مثلاً 100000"
+          placeholder="100.000"
         />
         {errors.initialDeposit && (
-          <p className="mt-1 text-sm text-red-600">
+          <p className="mt-1 text-sm text-red-700">
             {errors.initialDeposit.message as string}
           </p>
         )}
       </div>
-
-      {/* نمایش خلاصه اطلاعات */}
-      <div className="md:col-span-2 mt-4 bg-gray-50 border border-gray-200 rounded-md p-4 text-gray-700">
+      <div className="md:col-span-2 mt-4 bg-gray-50 border border-gray-200 rounded p-4 text-gray-700">
         <p>
           <strong>نوع حساب انتخاب شده:</strong>{" "}
-          <span className="text-blue-600 capitalize">
-            {accountType.replace("-", " ")}
-          </span>
+          <span className="text-blue-600">{accountType}</span>
         </p>
         <p>
-          <strong>مبلغ واریزی اولیه:</strong>{" "}
+          <strong>مبلغ واریزی اولیه: </strong>{" "}
           <span className="text-green-600">
             {initialDeposit ? initialDeposit.toLocaleString("fa-IR") : "0"}{" "}
             تومان
@@ -66,3 +63,5 @@ export const StepTwo = () => {
     </div>
   );
 };
+
+export default StepTwo;
