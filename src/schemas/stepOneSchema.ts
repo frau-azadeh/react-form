@@ -7,6 +7,13 @@ export const StepOneSchema = z.object({
     .min(1,"نام را به درستی وارد کنید")
     .max(25,"نام طولانی میباشد")
     .regex(/^[\u0600-\u06FF\s]+$/,"فقط حروف فارسی مجاز است"),
+  family: z
+    .string()
+    .trim()
+    .min(1,"نام خانوادگی را به درستی وارد کنید")
+    .max(50,"نام خانوادگی طولانی میباشد")
+    .regex(/^[\u0600-\u06FF\s]+$/,"فقط حروف فارسی مجاز است"),
+
 })
 
 export type StepOneSchemaType = z.infer<typeof StepOneSchema>
