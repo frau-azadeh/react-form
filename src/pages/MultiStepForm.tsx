@@ -11,6 +11,7 @@ import { mergedSchema, FormData } from "../schemas/mergedSchema";
 import { StepOneSchema } from "../schemas/stepOneSchema";
 import { StepTwoSchema } from "../schemas/stepTwoSchema";
 import { StepThreeSchema } from "../schemas/stepThreeSchema";
+import Button from "../components/Button";
 
 // مراحل به ترتیب
 const stepSchemas = [StepOneSchema, StepTwoSchema, StepThreeSchema];
@@ -45,7 +46,7 @@ export const MultiStepForm = () => {
   const goBack = () => setStep((prev) => prev - 1);
 
   const onSubmit = async (data: FormData) => {
-    toast.success("فرم با موفقیت ثبت شد ✅");
+    toast.success("فرم با موفقیت ثبت شد ");
     console.log("✅ داده نهایی:", data);
     methods.reset();
     setStep(0);
@@ -62,24 +63,24 @@ export const MultiStepForm = () => {
         {step === 1 && <StepTwo />}
         {step === 2 && <StepThree />}
 
-        <div className="flex justify-between gap-4">
+        <div className="flex justify-between gap-4 mt-10">
           {step > 0 && (
-            <button type="button" onClick={goBack} className="btn-secondary">
+            <Button type="button" onClick={goBack} variant="destructive">
               مرحله قبل
-            </button>
+            </Button>
           )}
           {step < stepSchemas.length - 1 ? (
-            <button type="button" onClick={goNext} className="btn-primary">
+            <Button type="button" onClick={goNext} variant="primary">
               ادامه
-            </button>
+            </Button>
           ) : (
-            <button
+            <Button
               type="submit"
-              className="btn-primary"
+              variant="add"
               disabled={methods.formState.isSubmitting}
             >
               ثبت نهایی
-            </button>
+            </Button>
           )}
         </div>
       </form>
