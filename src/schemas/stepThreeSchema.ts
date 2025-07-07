@@ -4,7 +4,7 @@ export const StepThreeSchema = z.object({
   termsAccepted: z
     .boolean()
     .refine((val)=> val === true,{
-      message: "باید شرایط را بپذیرید"
+      message: "(باید شرایط را بپذیرید)"
     })
 })
 
