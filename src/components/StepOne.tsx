@@ -55,6 +55,16 @@ const StepOne:React.FC = () => {
           <p>{errors.family.message as string}</p>
         )}
       </div>
+      <div>
+        <label>کد ملی</label>
+        <Input
+          {...register("nationalCode")}
+          placeholder='کد ملی 10 رقمی'
+        />
+        {errors.nationalCode &&(
+          <p>{errors.nationalCode.message as string}</p>
+        )}
+      </div>
     </div>
   )
 }
