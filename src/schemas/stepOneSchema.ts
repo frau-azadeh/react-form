@@ -4,14 +4,14 @@ export const StepOneSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(1, "Name is too short")
-    .max(25, "Name is too long")
+    .min(1, "نام را به درستی وارد کنید")
+    .max(25, "نام طولانی میباشد")
     .regex(/^[\u0600-\u06FF\s]+$/, "فقط حروف فارسی مجاز است"),
   family: z
     .string()
     .trim()
-    .min(1, "Family name is too short")
-    .max(50, "Family name is too long")
+    .min(1, "نام خانوادگی را به درستی وارد کنید")
+    .max(50, "نام خانوادگی طولانی میباشد")
     .regex(/^[\u0600-\u06FF\s]+$/, "فقط حروف فارسی مجاز است"),
   nationalCode: z.string().regex(/^\d{10}$/, "کد ملی باید 10 رقم باشد"),
   phone: z
