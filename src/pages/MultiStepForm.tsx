@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
 import StepOne from "../components/StepOne";
-import { StepTwo } from "../components/StepTwo";
+import  StepTwo  from "../components/StepTwo";
 import { StepThree } from "../components/StepThree";
 
 import { mergedSchema, FormData } from "../schemas/mergedSchema";
@@ -25,7 +25,7 @@ export const MultiStepForm = () => {
       name: "",
       family: "",
       nationalCode: "",
-      accountType: "short-term",
+      accountType: "کوتاه مدت",
       initialDeposit: 0,
       termsAccepted: false,
     },
