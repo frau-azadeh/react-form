@@ -65,6 +65,16 @@ const StepOne:React.FC = () => {
           <p>{errors.nationalCode.message as string}</p>
         )}
       </div>
+      <div>
+        <label>شماره موبایل</label>
+        <Input
+          {...register("phone")}
+          placeholder='09123456789'
+        />
+        {errors.phone && (
+          <p>{errors.phone.message as string}</p>
+        )}
+      </div>
     </div>
   )
 }
