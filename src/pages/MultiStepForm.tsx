@@ -3,7 +3,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
-import { StepOne } from "../components/StepOne";
+import StepOne from "../components/StepOne";
 import { StepTwo } from "../components/StepTwo";
 import { StepThree } from "../components/StepThree";
 
