@@ -11,7 +11,6 @@ const StepTwo: React.FC = () => {
 
   const accountType = useWatch({ name: "accountType", defaultValue: "" });
   const initialDeposit = useWatch({ name: "initialDeposit", defaultValue: 0 });
-  
 
   const accountTypeOptions = [
     { label: "کوتاه مدت", value: "کوتاه مدت" },
