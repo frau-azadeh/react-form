@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
 import Input from './Input';
+import Button from './Button';
 
 const StepOne:React.FC = () => {
   const{
@@ -74,6 +75,36 @@ const StepOne:React.FC = () => {
         {errors.phone && (
           <p>{errors.phone.message as string}</p>
         )}
+      </div>
+      <div>
+        <label>ایمیل</label>
+        <Input
+          type='email'
+          {...register("email")}
+          placeholder='example@mail.com'
+        />
+        {errors.email &&(
+          <p>{errors.email.message as string}</p>
+        )}
+      </div>
+      <div>
+        <Button onClick={()=> reset()} variant='secondary'>
+          ریست فرم
+        </Button>
+        <Button
+          variant='outline'
+          onClick={async()=>{
+            const isValid = await trigger([
+              "name",
+              "nationalCode",
+              "phone",
+              "email",
+            ])
+            console.log("اعتبار سنجی", isValid)
+          }}
+        >
+          بررسی اعتبار
+        </Button>
       </div>
     </div>
   )
