@@ -35,65 +35,65 @@ const StepOne:React.FC = () => {
   },[watchPhone, trigger])
 
   return (
-    <div>
-      <div>
-        <label>نام</label>
+    <div className='grid md:grid-cols-2 gap-10 m-5 grid-cols-1'>
+      <div className='flex flex-col'>
+        <label className='mb-3 text-gray-600'>نام</label>
         <Input
           {...register("name")}
           placeholder='نام کامل خود را وارد کنید'
         />
         {errors.name &&(
-          <p>{errors.name.message as string}</p>
+          <p className='mt-1 text-sm text-red-700'>{errors.name.message as string}</p>
         )}
       </div>
-      <div>
-        <label>نام خانوادگی</label>
+      <div className='flex flex-col'>
+        <label className='mb-3 text-gray-600'>نام خانوادگی</label>
         <Input
           {...register("family")}
           placeholder='نام خانوادگی خود را کامل وارد کنید'
         />
         {errors.family && (
-          <p>{errors.family.message as string}</p>
+          <p className='mt-1 text-sm text-red-700'>{errors.family.message as string}</p>
         )}
       </div>
-      <div>
-        <label>کد ملی</label>
+      <div className='flex flex-col'>
+        <label className='mb-3 text-gray-600'>کد ملی</label>
         <Input
           {...register("nationalCode")}
           placeholder='کد ملی 10 رقمی'
         />
         {errors.nationalCode &&(
-          <p>{errors.nationalCode.message as string}</p>
+          <p className='mt-1 text-sm text-red-700'>{errors.nationalCode.message as string}</p>
         )}
       </div>
-      <div>
-        <label>شماره موبایل</label>
+      <div className='flex flex-col'>
+        <label className='mb-3 text-gray-600'>شماره موبایل</label>
         <Input
           {...register("phone")}
           placeholder='09123456789'
         />
         {errors.phone && (
-          <p>{errors.phone.message as string}</p>
+          <p className='mt-1 text-sm text-red-700'>{errors.phone.message as string}</p>
         )}
       </div>
-      <div>
-        <label>ایمیل</label>
+      <div className='flex flex-col'>
+        <label className='mb-3 text-gray-600'>ایمیل</label>
         <Input
           type='email'
           {...register("email")}
           placeholder='example@mail.com'
         />
         {errors.email &&(
-          <p>{errors.email.message as string}</p>
+          <p className='mt-1 text-sm text-red-700'>{errors.email.message as string}</p>
         )}
       </div>
-      <div>
+      <div className='md:col-span-2 flex flex-col md:flex-row justify-between'>
         <Button onClick={()=> reset()} variant='secondary'>
           ریست فرم
         </Button>
         <Button
           variant='outline'
-          onClick={async()=>{
+          onClick={async ()=>{
             const isValid = await trigger([
               "name",
               "nationalCode",
@@ -111,3 +111,4 @@ const StepOne:React.FC = () => {
 }
 
 export default StepOne
+
