@@ -56,7 +56,7 @@ export const MultiStepForm = () => {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <h2 className="text-2xl font-bold text-center">
-          فرم افتتاح حساب بانکی - مرحله {step + 1}
+          فرم افتتاح دسته چک - مرحله {step + 1}
         </h2>
 
         {step === 0 && <StepOne />}
