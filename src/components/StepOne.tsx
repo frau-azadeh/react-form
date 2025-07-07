@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
+import Input from './Input';
 
 const StepOne:React.FC = () => {
   const{
@@ -34,7 +35,17 @@ const StepOne:React.FC = () => {
 
   return (
     <div>
-
+      <div>
+        <label>نام</label>
+        <Input
+          {...register("name")}
+          placeholder='نام کامل خود را وارد کنید'
+        />
+        {errors.name &&(
+          <p>{errors.name.message as string}</p>
+        )}
+      </div>
+      
     </div>
   )
 }
