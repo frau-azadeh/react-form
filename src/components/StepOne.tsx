@@ -45,7 +45,16 @@ const StepOne:React.FC = () => {
           <p>{errors.name.message as string}</p>
         )}
       </div>
-      
+      <div>
+        <label>نام خانوادگی</label>
+        <Input
+          {...register("family")}
+          placeholder='نام خانوادگی خود را کامل وارد کنید'
+        />
+        {errors.family && (
+          <p>{errors.family.message as string}</p>
+        )}
+      </div>
     </div>
   )
 }
