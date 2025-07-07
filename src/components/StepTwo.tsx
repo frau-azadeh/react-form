@@ -9,8 +9,9 @@ const StepTwo: React.FC = () => {
     formState: { errors },
   } = useFormContext();
 
-  const accountType = useWatch({ name: "accountType" });
-  const initialDeposit = useWatch({ name: "initialDeposit" });
+  const accountType = useWatch({ name: "accountType", defaultValue: "" });
+  const initialDeposit = useWatch({ name: "initialDeposit", defaultValue: 0 });
+  
 
   const accountTypeOptions = [
     { label: "کوتاه مدت", value: "کوتاه مدت" },
@@ -29,7 +30,7 @@ const StepTwo: React.FC = () => {
           })}
         />
         {errors.accountType && (
-          <p className="mt-1 text-sm tex-red-700">
+          <p className="mt-1 text-sm text-red-700">
             {errors.accountType.message as string}
           </p>
         )}
