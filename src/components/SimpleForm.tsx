@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+
 import toast from "react-hot-toast";
-import { formSchema, FormSchemaType } from "../schemas/formSchema";
+
+import { FormSchemaType, formSchema } from "../schemas/formSchema";
 
 type Skill = {
   name: string;

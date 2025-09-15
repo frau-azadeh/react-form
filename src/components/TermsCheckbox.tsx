@@ -1,8 +1,10 @@
 // components/TermsCheckbox.tsx
 import React from "react";
-import { Controller, Control } from "react-hook-form";
-import Input from "./Input";
+
+import { Control, Controller } from "react-hook-form";
+
 import { OpenAccountSchemaType } from "../schemas/openAccountSchema";
+import Input from "./Input";
 
 type TermsCheckboxProps = {
   control: Control<OpenAccountSchemaType>;
