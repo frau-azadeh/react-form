@@ -1,17 +1,18 @@
 import { useState } from "react";
-import { useForm, FormProvider } from "react-hook-form";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, useForm } from "react-hook-form";
+
 import toast from "react-hot-toast";
 
-import StepOne from "../components/StepOne";
-import StepTwo from "../components/StepTwo";
-import StepThree from "../components/StepThree";
-
-import { mergedSchema, FormData } from "../schemas/mergedSchema";
-import { StepOneSchema } from "../schemas/stepOneSchema";
-import { StepTwoSchema } from "../schemas/stepTwoSchema";
-import { StepThreeSchema } from "../schemas/stepThreeSchema";
 import Button from "../components/Button";
+import StepOne from "../components/StepOne";
+import StepThree from "../components/StepThree";
+import StepTwo from "../components/StepTwo";
+import { FormData, mergedSchema } from "../schemas/mergedSchema";
+import { StepOneSchema } from "../schemas/stepOneSchema";
+import { StepThreeSchema } from "../schemas/stepThreeSchema";
+import { StepTwoSchema } from "../schemas/stepTwoSchema";
 
 // مراحل به ترتیب
 const stepSchemas = [StepOneSchema, StepTwoSchema, StepThreeSchema];
@@ -56,7 +57,7 @@ export const MultiStepForm = () => {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <h2 className="text-2xl font-bold text-center">
-          فرم افتتاح حساب بانکی - مرحله {step + 1}
+          فرم افتتاح دسته چک - مرحله {step + 1}
         </h2>
 
         {step === 0 && <StepOne />}

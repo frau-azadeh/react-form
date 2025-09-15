@@ -1,19 +1,20 @@
 // components/OpenAccountForm.tsx
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+
 import {
   OpenAccountSchema,
   OpenAccountSchemaType,
 } from "../schemas/openAccountSchema";
-import { successToast, errorToast } from "../utils/toast";
-
+import { errorToast, successToast } from "../utils/toast";
 import Button from "./Button";
-import Input from "./Input";
-import Select from "./Select";
 import FormField from "./FormField";
-import TermsCheckbox from "./TermsCheckbox";
+import Input from "./Input";
 import LivePreview from "./LivePreview";
+import Select from "./Select";
+import TermsCheckbox from "./TermsCheckbox";
 
 const OpenAccountForm: React.FC = () => {
   const {

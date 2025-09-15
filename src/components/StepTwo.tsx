@@ -1,7 +1,9 @@
 import React from "react";
+
 import { useFormContext, useWatch } from "react-hook-form";
-import Select from "./Select";
+
 import Input from "./Input";
+import Select from "./Select";
 
 const StepTwo: React.FC = () => {
   const {
